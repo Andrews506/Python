@@ -1,0 +1,61 @@
+parking = [None] * 5
+front = -1
+rear = -1
+
+
+def enqueue(car):
+    global front, rear
+
+    if rear == 4:
+        print("Parking is Full - No space for new cars")
+    else:
+        if front == -1:
+            front = 0
+
+        rear += 1
+        parking[rear] = car
+        print("Car Parked:", car)
+
+
+def dequeue():
+    global front, rear
+
+    if front == -1 or front > rear:
+        print("Parking is Empty")
+    else:
+        print("Car Leav from the Parking:", parking[front])
+        front += 1
+
+
+def display():
+    if front == -1 or front > rear:
+        print("Parking is Empty")
+    else:
+        print("Cars in the  Parking:", parking[front:rear+1])
+
+while True:
+    print("\nCAR PARKING MANAGEMENT")
+    print("1. To Park Car")
+    print("2. To Remove Car")
+    print("3. To Display Cars")
+    print("4. Exitfrom Parking")
+
+    choice = int(input("Enter your Operation: "))
+
+    if choice == 1:
+        car = input("Enter Car to be park: ")
+        enqueue(car)
+
+    elif choice == 2:
+        dequeue()
+
+    elif choice == 3:
+        display()
+
+    elif choice == 4:
+        print("Exiting from Parking Managements")
+        break
+
+    else:
+        print("Invalid Choice")
+
